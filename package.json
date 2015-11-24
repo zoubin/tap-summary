@@ -1,0 +1,39 @@
+{
+  "name": "tap-summary",
+  "version": "0.0.1",
+  "description": "Summarize TAP",
+  "main": "index.js",
+  "bin": {
+    "tap-summary": "bin/cmd.js"
+  },
+  "scripts": {
+    "test": "npm run lint && task-tape test/*.js | ./bin/cmd.js",
+    "lint": "eslint index.js test/*.js bin/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoubin/tap-summary.git"
+  },
+  "keywords": [
+    "TAP",
+    "reporter"
+  ],
+  "author": "zoubin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zoubin/tap-summary/issues"
+  },
+  "homepage": "https://github.com/zoubin/tap-summary#readme",
+  "dependencies": {
+    "ansi-escape": "^1.0.1",
+    "duplexer2": "^0.1.4",
+    "figures": "^1.4.0",
+    "tap-out": "^1.4.1",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.1",
+    "tape": "^4.2.2",
+    "task-tape": "^1.2.2"
+  }
+}
