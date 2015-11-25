@@ -50,6 +50,7 @@ module.exports = function () {
       output.push(formatComment(res))
     }
     output.push(LF + LF)
+    output.push(null)
   })
 
   function update() {
