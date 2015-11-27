@@ -34,7 +34,7 @@ test('t.end', function(t) {
     next(function () {
       t.equal(
         math.precision(0.1),
-        --plan === 5 ? 2 : 1
+        --plan % 5 === 0 ? 2 : 1
       )
       if (plan) {
         NEXT()

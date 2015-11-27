@@ -25,5 +25,5 @@ or in `package.json`
 
 ## Example
 
-![summary](example/summary.png)
+![summary](example/clip.gif)
 

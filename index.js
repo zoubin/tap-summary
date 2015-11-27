@@ -10,33 +10,28 @@ module.exports = function () {
   var output = through()
   var test
 
-  output.push(LF)
-
+  output.push(LF + splitter(' Tests '))
   tap.on('test', function (res) {
     update()
-
     test = {
       name: res.name,
       pass: 0,
       fail: 0,
+      get title() {
+        return this.name + ' [pass: ' + this.pass + ', fail: ' + this.fail + ']'
+      },
     }
-    output.push(format.cha.eraseLine.escape('# ' + res.name) + LF)
+    output.push(LF + format.cha.eraseLine.escape('# ' + test.title))
   })
 
-  tap.on('pass', function (res) {
-    test.pass++
-    output.push(
-      format.cha.eraseLine(2).escape() +
-      '  ok ' + format.green.bold.escape(res.number) + ' ' + res.name
-    )
+  tap.on('pass', function () {
+    ++test.pass
+    output.push(format.cha.eraseLine.escape('# ' + test.title))
   })
 
-  tap.on('fail', function (res) {
-    test.fail++
-    output.push(
-      format.cha.eraseLine(2).escape() +
-      '  not ok ' + format.red.bold.escape(res.number) + ' ' + res.name
-    )
+  tap.on('fail', function () {
+    ++test.fail
+    output.push(format.cha.eraseLine.escape('# ' + test.title))
   })
 
   tap.on('output', function (res) {
@@ -56,20 +51,9 @@ module.exports = function () {
   function update() {
     if (test) {
       if (test.fail) {
-        output.push(
-          format.up.cha.red.escape(
-            symbols.cross + ' ' + test.name +
-          ' (pass: ' + test.pass + ', fail: ' + test.fail + ')'
-          ) +
-          format.down.cha.eraseLine.escape()
-        )
+        output.push(format.cha.red.eraseLine.escape(symbols.cross + ' ' + test.title))
       } else {
-        output.push(
-          format.up.cha.green.escape(
-            symbols.tick + ' ' + test.name + ' (' + test.pass + ')'
-          ) +
-          format.down.cha.eraseLine.escape()
-        )
+        output.push(format.cha.green.eraseLine.escape(symbols.tick + ' ' + test.title))
       }
     }
   }
@@ -81,18 +65,17 @@ module.exports = function () {
 function formatSummary(res) {
   var output = [LF]
   output.push(splitter(' Summary '))
-  output.push(format.yellow.escape('assertions: ' + res.asserts.length))
+  output.push(format.cyan.escape('assertions: ' + res.asserts.length))
   if (res.pass.length) {
     output.push(format.green.escape('pass: ' + res.pass.length))
   } else {
-    output.push(format.yellow.escape('pass: ' + res.pass.length))
+    output.push(format.cyan.escape('pass: ' + res.pass.length))
   }
   if (res.fail.length) {
     output.push(format.red.escape('fail: ' + res.fail.length))
   } else {
-    output.push(format.yellow.escape('fail: ' + res.fail.length))
+    output.push(format.cyan.escape('fail: ' + res.fail.length))
   }
-  output.push(repeat('=', 80))
   return output.join(LF)
 }
 
@@ -106,9 +89,8 @@ function formatComment(res) {
   var output = [LF]
   output.push(splitter(' Comments '))
   output.push(Object.keys(comments).map(function (name) {
-    return format.yellow.escape(name) + LF + comments[name].join(LF)
-  }).join(LF))
-  output.push(splitter())
+    return format.cyan.underline.escape(name) + LF + comments[name].join(LF)
+  }).join(LF + LF))
   return output.join(LF)
 }
 
@@ -116,7 +98,9 @@ function splitter(s) {
   var len = s && s.length || 0
   var max = 80
   var left = max - len >> 1
-  return repeat('=', left) + (s || '') + repeat('=', max - len - left)
+  return format.yellow.escape(
+    repeat('-', left) + (s || '') + repeat('-', max - len - left)
+  )
 }
 
 function repeat(str, n) {
@@ -138,18 +122,19 @@ function getTest(n, tests) {
 function formatFail(res) {
   var fail = res.fail.reduce(function (o, c) {
     var name = getTest(c.test, res.tests).name
-    o[name] = o[name] || []
+    o[name] = o[name] || [format.cyan.underline.escape('# ' + name)]
+    o[name].push(format.red.escape('  ' + symbols.cross + ' ' + c.name))
     o[name].push(prettifyError(c))
     return o
   }, {})
 
   var output = [LF]
   output.push(splitter(' Fails '))
-  Object.keys(fail).forEach(function (name) {
-    output.push(format.red.escape(symbols.cross + ' ' + name))
-    output.push(fail[name].join(LF + '    ' + repeat('-', 76) + LF))
-  })
-  output.push(repeat('=', 80))
+  output.push(
+    Object.keys(fail).map(function (name) {
+      return fail[name].join(LF)
+    }).join(LF + LF)
+  )
   return output.join(LF)
 }
 
