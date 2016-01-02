@@ -28,6 +28,7 @@
     "ansi-escape": "^1.0.1",
     "duplexer2": "^0.1.4",
     "figures": "^1.4.0",
+    "pretty-ms": "^2.1.0",
     "tap-out": "^1.4.1",
     "through2": "^2.0.0"
   },

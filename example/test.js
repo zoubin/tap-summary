@@ -85,7 +85,7 @@ test('callback support', function(t, cb) {
   })
 })
 
-test('check `https://github.com/zoubin/task-tape` for more information', function(t) {
+test('check `task-tape` for more information', function(t) {
   t.task(function (cb) {
     next(function () {
       t.equal(

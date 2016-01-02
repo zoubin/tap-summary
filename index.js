@@ -3,6 +3,7 @@ var duplexer = require('duplexer2')
 var parser = require('tap-out')
 var format = require('ansi-escape')
 var symbols = require('figures')
+var prettyMs = require('pretty-ms')
 var LF = '\n'
 
 module.exports = function () {
@@ -10,6 +11,7 @@ module.exports = function () {
   var output = through()
   var test
 
+  var duration = 0
   output.push(LF + splitter(' Tests '))
   tap.on('test', function (res) {
     update()
@@ -18,8 +20,14 @@ module.exports = function () {
       pass: 0,
       fail: 0,
       get title() {
-        return this.name + ' [pass: ' + this.pass + ', fail: ' + this.fail + ']'
+        return this.name +
+          ' [' +
+          'pass: ' + this.pass +
+          ', fail: ' + this.fail +
+          (test.end ? ', duration: ' + prettyMs(test.duration) : '') +
+          ']'
       },
+      start: new Date(),
     }
     output.push(LF + format.cha.eraseLine.escape('# ' + test.title))
   })
@@ -36,7 +44,7 @@ module.exports = function () {
 
   tap.on('output', function (res) {
     update()
-    output.push(formatSummary(res))
+    output.push(formatSummary(res, { duration: duration }))
     if (res.fail.length) {
       dup.failed = true
       output.push(formatFail(res))
@@ -50,6 +58,9 @@ module.exports = function () {
 
   function update() {
     if (test) {
+      test.end = new Date()
+      test.duration = test.end - test.start
+      duration += test.duration
       if (test.fail) {
         output.push(format.cha.red.eraseLine.escape(symbols.cross + ' ' + test.title))
       } else {
@@ -62,9 +73,10 @@ module.exports = function () {
   return dup
 }
 
-function formatSummary(res) {
+function formatSummary(res, extra) {
   var output = [LF]
   output.push(splitter(' Summary '))
+  output.push(format.cyan.escape('duration: ' + prettyMs(extra.duration)))
   output.push(format.cyan.escape('assertions: ' + res.asserts.length))
   if (res.pass.length) {
     output.push(format.green.escape('pass: ' + res.pass.length))
