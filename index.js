@@ -1,7 +1,10 @@
+var showAnsi = false
+var showProgress = false
+
 var through = require('through2')
 var duplexer = require('duplexer2')
 var parser = require('tap-out')
-var format = require('ansi-escape')
+var format = showAnsi ? require('ansi-escape') : require('./no-ansi')
 var symbols = require('figures')
 var prettyMs = require('pretty-ms')
 var LF = '\n'
@@ -29,17 +32,23 @@ module.exports = function () {
       },
       start: new Date(),
     }
-    output.push(LF + format.cha.eraseLine.escape('# ' + test.title))
+    if (showProgress) {
+      output.push(LF + format.cha.eraseLine.escape('# ' + test.title))
+    }
   })
 
   tap.on('pass', function () {
     ++test.pass
-    output.push(format.cha.eraseLine.escape('# ' + test.title))
+    if (showProgress) {
+      output.push(format.cha.eraseLine.escape('# ' + test.title))
+    }
   })
 
   tap.on('fail', function () {
     ++test.fail
-    output.push(format.cha.eraseLine.escape('# ' + test.title))
+    if (showProgress) {
+      output.push(format.cha.eraseLine.escape('# ' + test.title))
+    }
   })
 
   tap.on('output', function (res) {
@@ -163,4 +172,3 @@ function prettifyError(assertion) {
   }
   return format.cyan.escape(ret.join(LF))
 }
-
