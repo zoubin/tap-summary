@@ -1,12 +1,27 @@
-var showAnsi = false
-var showProgress = false
-
 var through = require('through2')
 var duplexer = require('duplexer2')
 var parser = require('tap-out')
-var format = showAnsi ? require('ansi-escape') : require('./no-ansi')
 var symbols = require('figures')
 var prettyMs = require('pretty-ms')
+var parseOpts = require('minimist')
+
+var opts = parseOpts(process.argv.slice(2), {
+  boolean: true,
+  alias: {
+    ansi: 'a',
+    progress: 'p',
+  },
+  default: {
+    ansi: true,
+    progress: true,
+  },
+})
+
+var showAnsi = opts.ansi
+var showProgress = opts.progress
+
+var format = showAnsi ? require('ansi-escape') : require('./lib/no-ansi')
+
 var LF = '\n'
 
 module.exports = function () {
@@ -70,6 +85,9 @@ module.exports = function () {
       test.end = new Date()
       test.duration = test.end - test.start
       duration += test.duration
+      if (showAnsi && !showProgress) {
+        output.push(LF)
+      }
       if (test.fail) {
         output.push(format.cha.red.eraseLine.escape(symbols.cross + ' ' + test.title))
       } else {

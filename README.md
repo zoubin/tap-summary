@@ -23,7 +23,13 @@ or in `package.json`
 }
 ```
 
+### CLI Options
+
+```
+  --no-ansi        Disable ANSI formatting
+  --no-progress    Disable progress output during tests
+```
+
 ## Example
 
 ![summary](example/clip.gif)
-
