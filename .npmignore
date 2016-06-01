@@ -1,4 +1,6 @@
-example
-test
+npm-debug.log
 changelog.md
+coverage/
+example/
+test/
 .*
