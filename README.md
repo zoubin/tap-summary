@@ -28,6 +28,7 @@ or in `package.json`
 ```
   --no-ansi        Disable ANSI formatting
   --no-progress    Disable progress output during tests
+  --markdown       Format output as markdown
 ```
 
 ## Example
