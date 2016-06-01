@@ -6,12 +6,12 @@ var opts = minimist(process.argv.slice(2), {
   alias: {
     ansi: 'a',
     progress: 'p',
-    markdown: 'm'
+    markdown: 'm',
   },
   default: {
     ansi: true,
     progress: true,
-    markdown: false
+    markdown: false,
   },
 })
 
