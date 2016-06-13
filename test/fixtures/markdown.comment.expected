@@ -1,0 +1,19 @@
+# Tests
+- ✔ sync [pass: 1, fail: 0]
+- ✔ async [pass: 1, fail: 0]
+
+# Summary
+- planned: 2
+- assertions: 2
+- pass: 2
+- fail: 0
+
+# Comments
+```
+# sync
+Hello, 
+
+# async
+world!
+```
+

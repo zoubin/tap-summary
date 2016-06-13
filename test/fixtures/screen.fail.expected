@@ -1,0 +1,28 @@
+
+[33m------------------------------------ Tests -------------------------------------
+[0m
+[G[32m✔ pass [pass: 1, fail: 0][0m
+[G[31m✖ fail [pass: 0, fail: 1][0m
+[G[31m✖ pass and fail [pass: 1, fail: 1][0m
+
+[33m----------------------------------- Summary ------------------------------------
+[0m
+[36mplanned: 4[0m
+[36massertions: 4[0m
+[32mpass: 2[0m
+[31mfail: 2[0m
+
+[33m------------------------------------ Fails -------------------------------------
+[0m
+[36m[4m# fail[0m[0m
+[31m  ✖ should fail[0m
+    operator: ok
+    expected: true
+    actual:   false
+
+[36m[4m# pass and fail[0m[0m
+[31m  ✖ should fail[0m
+    operator: ok
+    expected: true
+    actual:   false
+

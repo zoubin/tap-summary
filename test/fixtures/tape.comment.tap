@@ -1,0 +1,14 @@
+TAP version 13
+# sync
+ok 1 should pass
+Hello, 
+# async
+ok 2 should pass
+world!
+
+1..2
+# tests 2
+# pass  2
+
+# ok
+

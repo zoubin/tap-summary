@@ -1,0 +1,10 @@
+# Tests
+- ✔ t.plan [pass: 1, fail: 0]
+- ✔ t.end [pass: 2, fail: 0]
+
+# Summary
+- planned: 3
+- assertions: 3
+- pass: 3
+- fail: 0
+

@@ -1,0 +1,26 @@
+TAP version 13
+# pass
+ok 1 should pass
+# fail
+not ok 2 should fail
+  ---
+    operator: ok
+    expected: true
+    actual:   false
+    at: Test.<anonymous> (/Users/zoubin/usr/src/self/tap-summary/example/error.js:9:5)
+  ...
+# pass and fail
+ok 3 should pass
+not ok 4 should fail
+  ---
+    operator: ok
+    expected: true
+    actual:   false
+    at: Test.<anonymous> (/Users/zoubin/usr/src/self/tap-summary/example/error.js:15:5)
+  ...
+
+1..4
+# tests 4
+# pass  2
+# fail  2
+

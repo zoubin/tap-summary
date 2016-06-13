@@ -1,7 +1,7 @@
 var test = require('tape')
 var math = require('./math')
 
-test('t.plan', function(t) {
+test('pass', function(t) {
   t.plan(3)
 
   t.equal(
@@ -20,7 +20,7 @@ test('t.plan', function(t) {
   })
 })
 
-test('t.end', function(t) {
+test('fail', function(t) {
   t.equal(
     math.precision(0),
     0
@@ -39,67 +39,20 @@ test('t.end', function(t) {
       if (plan) {
         NEXT()
       } else {
-        console.log('DONE')
         t.end()
       }
     })
   })()
 })
 
-test('promise support', function(t) {
-  var plan = 10
-  t.equal(
-    math.add(0.34, 0.01),
-    0.35
-  )
-  t.equal(
-    math.add(1.1111, -1.11),
-    0.0011
-  )
-  // the test will end when the returned promise resolves
-  return new Promise(function (rs) {
-    (function NEXT() {
-      next(function () {
-        t.equal(
-          math.add(1, 2),
-          --plan === 5 ? 2 : 3
-        )
-        if (plan) {
-          NEXT()
-        } else {
-          console.log('DONE')
-          rs()
-        }
-      })
-    })()
-  })
-})
-
-test('callback support', function(t, cb) {
+test('comment', function (t) {
   next(function () {
-    t.equal(
-      math.add(0.34, 0.01),
-      0.35
-    )
-    cb()
-  })
-})
-
-test('check `task-tape` for more information', function(t) {
-  t.task(function (cb) {
-    next(function () {
-      t.equal(
-        math.precision(0.1),
-        1
-      )
-      cb()
-    })
+    t.ok(true, 'should pass')
+    console.log('This is something from `console.log`')
+    t.end()
   })
 })
 
 function next(fn) {
-  setTimeout(function() {
-    fn()
-  }, 100)
+  setTimeout(fn, 100)
 }
-

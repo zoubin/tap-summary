@@ -7,7 +7,7 @@
     "tap-summary": "bin/cmd.js"
   },
   "scripts": {
-    "test": "npm run lint && task-tape test/*.js | ./bin/cmd.js",
+    "test": "npm run lint && tape test/*.js | ./bin/cmd.js",
     "lint": "eslint index.js test/*.js bin/*.js"
   },
   "repository": {
@@ -26,15 +26,14 @@
   "homepage": "https://github.com/zoubin/tap-summary#readme",
   "dependencies": {
     "ansi-escape": "^1.0.1",
-    "duplexer2": "^0.1.4",
+    "commander": "^2.9.0",
     "figures": "^1.4.0",
-    "minimist": "^1.2.0",
     "pretty-ms": "^2.1.0",
     "tap-out": "^1.4.1"
   },
   "devDependencies": {
+    "concat-stream": "^1.5.1",
     "eslint": "^2.0.0",
-    "tape": "^4.2.2",
-    "task-tape": "^1.2.2"
+    "tape": "^4.2.2"
   }
 }
