@@ -7,7 +7,7 @@
     "tap-summary": "bin/cmd.js"
   },
   "scripts": {
-    "test": "npm run lint && tape test/*.js | ./bin/cmd.js",
+    "test": "npm run lint && tape test/*.js | ./bin/cmd.js --no-progress",
     "lint": "eslint index.js test/*.js bin/*.js"
   },
   "repository": {
