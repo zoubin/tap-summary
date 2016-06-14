@@ -1,4 +1,10 @@
-<!-- 60bca97 1465887874000 -->
+<!-- 93bcfc4 1465895978000 -->
+
+## [v3.0.1](https://github.com/zoubin/tap-summary/commit/93bcfc4) (2016-06-14)
+
+* [[`7414e5a`](https://github.com/zoubin/tap-summary/commit/7414e5a)] Make the reporter reusable and document it
+
+* [[`be0a21f`](https://github.com/zoubin/tap-summary/commit/be0a21f)] changelog
 
 ## [v3.0.0](https://github.com/zoubin/tap-summary/commit/60bca97) (2016-06-14)
 
