@@ -1,21 +1,18 @@
 #!/usr/bin/env node
-var minimist = require('minimist')
 
-var opts = minimist(process.argv.slice(2), {
-  boolean: true,
-  alias: {
-    ansi: 'a',
-    progress: 'p',
-    markdown: 'm',
-  },
-  default: {
-    ansi: true,
-    progress: true,
-    markdown: false,
-  },
+var Command = require('commander').Command
+var program = new Command('tap-summary')
+
+program
+  .version(require('../package.json').version)
+  .option('--no-ansi', 'Disable ANSI formatting.')
+  .option('--no-progress', 'Disable progress output during tests.')
+  .parse(process.argv)
+
+var reporter = require('..')({
+  ansi: program.ansi,
+  progress: program.progress,
 })
-
-var reporter = require('..')(opts)
 
 process.stdin
   .pipe(reporter)
