@@ -1,4 +1,24 @@
-<!-- 02960ee 1465723873000 -->
+<!-- 60bca97 1465887874000 -->
+
+## [v3.0.0](https://github.com/zoubin/tap-summary/commit/60bca97) (2016-06-14)
+
+* [[`cae9287`](https://github.com/zoubin/tap-summary/commit/cae9287)] Rename variables
+
+* [[`40256bc`](https://github.com/zoubin/tap-summary/commit/40256bc)] Require implementation of `formatter.init`
+
+* [[`af978ca`](https://github.com/zoubin/tap-summary/commit/af978ca)] Move markdown to tap-markdown
+
+* [[`2a8a712`](https://github.com/zoubin/tap-summary/commit/2a8a712)] Disable progress for npm test
+
+* [[`ca8ff27`](https://github.com/zoubin/tap-summary/commit/ca8ff27)] Refactor.
+
+    
+    * Add more tests.
+    * Redefine the way formatters can be configured.
+     `progress` will only be valid when `ansi` is true,
+     and `ansi` is no longer available for `markdown`.
+
+* [[`70c7087`](https://github.com/zoubin/tap-summary/commit/70c7087)] changelog
 
 ## [v2.1.3](https://github.com/zoubin/tap-summary/commit/02960ee) (2016-06-12)
 
