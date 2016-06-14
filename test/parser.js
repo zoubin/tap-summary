@@ -1,12 +1,12 @@
 var test = require('tape')
-var summarize = require('../lib/summarize')
+var parser = require('../lib/parser')
 var fs = require('fs')
 var path = require('path')
 var fixtures = path.resolve.bind(path, __dirname, 'fixtures')
 
-test('summarize.summary', function (t) {
-  fs.createReadStream(fixtures('tape.summary.tap'))
-    .pipe(summarize())
+test('parser.summary', function (t) {
+  fs.createReadStream(fixtures('summary.tap'))
+    .pipe(parser())
     .on('summary', function (summary) {
       t.equal(summary.planned, 3, 'planned')
       t.equal(summary.assertions, 3, 'assertions')
@@ -17,9 +17,9 @@ test('summarize.summary', function (t) {
     })
 })
 
-test('summarize.summary, unnamed', function (t) {
-  fs.createReadStream(fixtures('tape.summary.unnamed.tap'))
-    .pipe(summarize())
+test('parser.summary, unnamed', function (t) {
+  fs.createReadStream(fixtures('summary.unnamed.tap'))
+    .pipe(parser())
     .on('summary', function (summary) {
       t.equal(summary.planned, 3, 'planned')
       t.equal(summary.assertions, 3, 'assertions')
@@ -30,9 +30,9 @@ test('summarize.summary, unnamed', function (t) {
     })
 })
 
-test('summarize.fail', function (t) {
-  fs.createReadStream(fixtures('tape.fail.tap'))
-    .pipe(summarize())
+test('parser.fail', function (t) {
+  fs.createReadStream(fixtures('fail.tap'))
+    .pipe(parser())
     .on('summary', function (summary, fails) {
       t.equal(summary.planned, 4, 'planned')
       t.equal(summary.assertions, 4, 'assertions')
@@ -44,9 +44,9 @@ test('summarize.fail', function (t) {
     })
 })
 
-test('summarize.comment', function (t) {
-  fs.createReadStream(fixtures('tape.comment.tap'))
-    .pipe(summarize())
+test('parser.comment', function (t) {
+  fs.createReadStream(fixtures('comment.tap'))
+    .pipe(parser())
     .on('summary', function (summary, fails, comments) {
       t.equal(summary.planned, 2, 'planned')
       t.equal(summary.assertions, 2, 'assertions')
