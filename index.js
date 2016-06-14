@@ -2,9 +2,7 @@ var reporter = require('./lib/reporter')
 var Formatter = require('./lib/formatter')
 
 module.exports = function (opts) {
-  return reporter(new Formatter(opts))
+  return new Formatter(opts).init(reporter())
 }
-module.exports.Formatter = Formatter
 module.exports.reporter = reporter
-module.exports.parser = require('./lib/parser')
-
+module.exports.Formatter = Formatter
