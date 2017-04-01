@@ -1,6 +1,6 @@
 {
   "name": "tap-summary",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Summarize TAP",
   "main": "index.js",
   "bin": {
