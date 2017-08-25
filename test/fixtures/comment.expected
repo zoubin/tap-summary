@@ -13,9 +13,9 @@
 
 [33m# Comments
 [0m
-[36m[4m# sync[0m[0m
+[36m[4m## sync[0m[0m
 Hello, 
 
-[36m[4m# async[0m[0m
+[36m[4m## async[0m[0m
 world!
 

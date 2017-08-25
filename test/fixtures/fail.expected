@@ -14,13 +14,13 @@
 
 [33m# Fails
 [0m
-[36m[4m# fail[0m[0m
+[36m[4m## fail[0m[0m
 [31m  ✖ should fail[0m
     operator: ok
     expected: true
     actual:   false
 
-[36m[4m# pass and fail[0m[0m
+[36m[4m## pass and fail[0m[0m
 [31m  ✖ should fail[0m
     operator: ok
     expected: true
