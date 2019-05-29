@@ -1,3 +1,10 @@
+HOW TO RUN:
+
+example: npm test (results without stack trace)
+
+	npm test 1 (results with stack trace) 
+
+
 # tap-summary
 [![version](https://img.shields.io/npm/v/tap-summary.svg)](https://www.npmjs.org/package/tap-summary)
 [![status](https://travis-ci.org/zoubin/tap-summary.svg?branch=master)](https://travis-ci.org/zoubin/tap-summary)
