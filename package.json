@@ -29,7 +29,7 @@
     "commander": "^2.9.0",
     "figures": "^2.0.0",
     "pretty-ms": "^3.0.0",
-    "tap-out": "git@github.com:nicocube/tap-out.git"
+    "tap-out": "^3.0.0"
   },
   "devDependencies": {
     "concat-stream": "^1.5.1",
